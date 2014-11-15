@@ -11,6 +11,8 @@ public class Program {
 		words.add("Antoine");words.add("de");words.add("St Exupery");
 
 		Iterator<String> it = words.iterator();
+		it.next();
+		
 		while(it.hasNext()) {
 			String w1 = (String)it.next();
 			String w2 = (String)it.next(); /** THIS IS AN ERROR **/
