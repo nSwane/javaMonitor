@@ -1,16 +1,24 @@
-package xFiles.monitor;
+package xFiles1.monitor;
 
 public class Monitor {
 
 	private States currentState;
+	private String name;
 	
 	public Monitor(){
-		currentState = States.closed;
+		this.currentState = States.closed;
+		this.name = "";
 	}
 	
 	
+	public Monitor(String name) {
+		this.currentState = States.closed;
+		this.name = name;
+	}
+
+
 	public Verdict receiveEvent(Events e) {
-		System.out.println("=> Monitor received event "+e);
+		System.out.println("=> Monitor "+this.name+" received event "+e);
 		updateState(e);
 		emitVerdict();
 		return currentVerdict();
@@ -28,8 +36,8 @@ public class Monitor {
 				currentState = States.definitlyClosed;
 				break;
 				
-			default:
-				// nothing to do in others cases
+			case close:
+				// nothing to do in this case (another requirement)
 				break;		
 			}
 			break;
@@ -44,14 +52,18 @@ public class Monitor {
 				currentState = States.error;
 				break;
 				
-			default:
-				// nothing to do in others cases
+			case open:
+				// nothing to do in this case
 				break;
 			}
 			break;
 			
-		default:
-			// nothing to do in others cases
+		case definitlyClosed:
+			// can't reach this code
+			break;
+			
+		case error:
+			// No need to execute any code.
 			break;
 		}
 	}
@@ -72,6 +84,6 @@ public class Monitor {
 	}
 	
 	public void emitVerdict () {
-		System.out.println("Monitor verdict: "+currentVerdict());
+		System.out.println("Monitor "+this.name+" verdict: "+currentVerdict());
 	}
 }

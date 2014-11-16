@@ -12,6 +12,13 @@ public aspect Aspect {
 	// Enumerator - Vector map
 	private VerificationMonitor monitor = new VerificationMonitor();
 	
+	/**
+	 * Objects passed in parameter must match the event.
+	 * If event is create, objects must be [<instance of Enumeration>, <instance of Vector>].
+	 * If event is update, objects must be [<instance of Vector>].
+	 * If event is next, objects must be [<instance of Enumeration>].
+	 * 
+	 */
 	public Verdict dispatchEvent(Event event, Object... objects){
 		Verdict v = monitor.receiveEvent(event, objects);
 		return v;

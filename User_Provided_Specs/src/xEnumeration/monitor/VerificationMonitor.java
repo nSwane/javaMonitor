@@ -44,15 +44,8 @@ public class VerificationMonitor {
 				// Map the enumeration with the corresponding vector
 				
 				// Get instances of each class (Enumeration and Vector)
-				for(Object o: objects){
-					if(Enumeration.class.isInstance(o)){
-						enumeration = (Enumeration) o;
-					}
-					
-					if(Vector.class.isInstance(o)){
-						vector = (Vector) o;
-					}
-				}
+				enumeration = (Enumeration) objects[0];
+				vector = (Vector) objects[1];
 				
 				// Mapping
 				this.evMap.put(enumeration, vector);
@@ -73,9 +66,7 @@ public class VerificationMonitor {
 				// Update vector's state
 				
 				// Get instanced class of Vector
-				for(Object o: objects){
-					vector = (Vector) o;
-				}
+				vector = (Vector) objects[0];
 				
 				// Update state
 				if(this.vectorMap.containsKey(vector)){
@@ -107,9 +98,7 @@ public class VerificationMonitor {
 			case next:
 				
 				// Get instanced class of Enumeration
-				for(Object o: objects){
-					enumeration = (Enumeration) o;
-				}
+				enumeration = (Enumeration) objects[0];
 				
 				// Get the corresponding vector
 				vector = this.evMap.get(enumeration);
