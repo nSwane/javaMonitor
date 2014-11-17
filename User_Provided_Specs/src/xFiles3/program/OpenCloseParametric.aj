@@ -1,5 +1,6 @@
 package xFiles3.program;
 
+
 import java.io.RandomAccessFile;
 import java.util.HashMap;
 
@@ -8,6 +9,8 @@ import xFiles3.monitor.Monitor;
 
 
 public aspect OpenCloseParametric {
+	private Runtime r = Runtime.getRuntime();
+	private Long memoryUsed = new Long(0);
 	public static boolean enable = false;
 	
 	HashMap<RandomAccessFile, Monitor> monitors = new HashMap<RandomAccessFile, Monitor>(); 
@@ -25,7 +28,28 @@ public aspect OpenCloseParametric {
 	pointcut write(RandomAccessFile f) :
 		target(f) && call(* java.io.RandomAccessFile.write*(..)) && if(enable);
 	
+	pointcut memory_track():
+		withincode(public static void main(String[]));
+	
+	pointcut memory_end():
+		execution(public static void main(String[]));
+	
 	///// ADVICES /////
+	
+	before(): memory_track(){
+		Long mem = r.totalMemory() - r.freeMemory();
+		if(memoryUsed == 0){
+			memoryUsed = mem;
+		}
+		else{
+			memoryUsed = (memoryUsed + mem)/2;
+		}
+	}
+	
+	after(): memory_end(){
+		System.out.println("\nMEMORY USED: " + memoryUsed + " bytes\n");
+	}
+	
 	after(String mode) returning(RandomAccessFile f): open(mode) {
 		Monitor m = new Monitor(f.hashCode(), mode);
 		monitors.put(f, m);
