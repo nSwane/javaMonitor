@@ -9,6 +9,13 @@ import xEnumeration.monitor.VerificationMonitor;
 
 public aspect Aspect {
 
+	private Runtime r = Runtime.getRuntime();
+	private Long memoryUsed = new Long(0);
+	private static boolean enabled = false;
+	// Program4:
+	//	1999695 bytes when false		--> depends on where the pointcuts are set
+	//	2271583 bytes when true
+	
 	// Enumerator - Vector map
 	private VerificationMonitor monitor = new VerificationMonitor();
 	
@@ -24,9 +31,25 @@ public aspect Aspect {
 		return v;
 	}
 	
-	pointcut create(Vector v): call(Enumeration<E> java.util.Vector.elements()) && target(v);
-	pointcut next(Enumeration e): call(E java.util.Enumeration.nextElement()) && target(e);
-	pointcut update(Vector v, Object o): call(* java.util.Vector.add(Object)) && target(v) && args(o);
+	pointcut create(Vector v): call(Enumeration<E> java.util.Vector.elements()) && target(v) && if(enabled);
+	pointcut next(Enumeration e): call(E java.util.Enumeration.nextElement()) && target(e) && if(enabled);
+	pointcut update(Vector v, Object o): call(* java.util.Vector.add(Object)) && target(v) && args(o) && if(enabled);
+	pointcut memory_track(): withincode(public static void main(String[]));
+	pointcut memory_end(): execution(public static void main(String[]));
+	
+	before(): memory_track(){
+		Long mem = r.totalMemory() - r.freeMemory();
+		if(memoryUsed == 0){
+			memoryUsed = mem;
+		}
+		else{
+			memoryUsed = (memoryUsed + mem)/2;
+		}
+	}
+	
+	after(): memory_end(){
+		System.out.println("\nMEMORY USED: " + memoryUsed + " bytes\n");
+	}
 	
 	Enumeration around(Vector v): create(v){
 		Enumeration e = proceed(v);
@@ -42,4 +65,5 @@ public aspect Aspect {
 	before(Vector v, Object o): update(v, o){
 		dispatchEvent(Event.update, v);
 	}
+	
 }
