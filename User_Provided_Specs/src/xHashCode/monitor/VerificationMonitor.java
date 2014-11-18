@@ -7,6 +7,14 @@ import java.util.HashSet;
 import xHashCode.monitor.Event;
 import xHashCode.monitor.Verdict;
 
+/**
+ * Principle:
+ * 	Initialize collection with null and then map it with its corresponding HashSet.
+ * 	From now, we detect errors as soon as the collection is mapped with null again.
+ * 
+ * @author Ray
+ *
+ */
 public class VerificationMonitor {
 
 	private int id;

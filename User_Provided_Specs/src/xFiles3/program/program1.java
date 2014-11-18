@@ -5,7 +5,6 @@ import java.io.RandomAccessFile;
 
 public class program1 {
 	public static void main(String[] args) {
-		OpenCloseParametric.enable = true;
 		
 		RandomAccessFile file1, file2;
 		

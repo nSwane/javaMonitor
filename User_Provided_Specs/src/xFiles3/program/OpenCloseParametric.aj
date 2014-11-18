@@ -17,7 +17,7 @@ public aspect OpenCloseParametric {
 	private Long memoryUsed = new Long(0);
 	
 	// Enbale or not monitor calls
-	public static boolean enable = false;
+	public static boolean enable = true;
 	
 	HashMap<RandomAccessFile, Monitor> monitors = new HashMap<RandomAccessFile, Monitor>(); 
 	

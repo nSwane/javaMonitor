@@ -7,7 +7,7 @@ import xFiles2.monitor.Monitor;
 
 
 public aspect OpenCloseParametric {
-	public static boolean enable = false;
+	public static boolean enable = true;
 	
 	HashMap<RandomAccessFile, Monitor> monitors = new HashMap<RandomAccessFile, Monitor>(); 
 	

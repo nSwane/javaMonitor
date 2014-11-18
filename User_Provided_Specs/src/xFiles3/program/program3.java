@@ -13,7 +13,6 @@ import java.io.RandomAccessFile;
  */
 public class program3 {
 	public static void main(String[] args) {
-		OpenCloseParametric.enable = true;
 		
 		RandomAccessFile file1, file2;
 		

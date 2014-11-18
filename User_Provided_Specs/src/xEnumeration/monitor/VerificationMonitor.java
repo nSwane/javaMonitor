@@ -4,16 +4,31 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Vector;
 
-
+/**
+ * Principle:
+ * 	Initialize both structures with the same state.
+ * 	Errors are located as soon as both states differ.
+ * 
+ * Needed 3 maps:
+ * 	Enumeration - Vector map:
+ * 		if event on vector is received, we must be able to retrieve the corresponding enumeration.
+ * 	Vector - State map:
+ * 		save vector state.
+ *  Enumeration - State map:
+ *  	save enumeration state.
+ *   
+ * @author Ray
+ *
+ */
 public class VerificationMonitor {
 	
-	// Enumerator - Vector map
+	// Enumeration - Vector map
 	private  HashMap<Enumeration, Vector> evMap;
 	
 	// Vector - State map
 	private HashMap<Vector, Integer> vectorMap;
 	
-	// Enumerator - State map
+	// Enumeration - State map
 	private HashMap<Enumeration, Integer> enumerationMap;
 	
 	public VerificationMonitor () {
