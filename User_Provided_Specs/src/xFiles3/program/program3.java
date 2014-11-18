@@ -3,6 +3,14 @@ package xFiles3.program;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
+/**
+ * Memory used:
+ * when monitor is called: 2685616 bytes
+ * when monitor is not called: 2685144 bytes
+ * 
+ * @author marcg_000
+ *
+ */
 public class program3 {
 	public static void main(String[] args) {
 		OpenCloseParametric.enable = true;

@@ -9,8 +9,14 @@ import xFiles3.monitor.Monitor;
 
 
 public aspect OpenCloseParametric {
+	
+	// Get runtime to retreive memory used
 	private Runtime r = Runtime.getRuntime();
+	
+	// Initialize memory used
 	private Long memoryUsed = new Long(0);
+	
+	// Enbale or not monitor calls
 	public static boolean enable = false;
 	
 	HashMap<RandomAccessFile, Monitor> monitors = new HashMap<RandomAccessFile, Monitor>(); 

@@ -3,6 +3,14 @@ package xEnumeration.program;
 import java.util.Enumeration;
 import java.util.Vector;
 
+/**
+ * Memory used:
+ * when monitor is called: 3020487 bytes
+ * when monitor is not called: 2684944 bytes
+ * 
+ * @author marcg_000
+ *
+ */
 public class Program4 {
 
 	public static void main(String[] args) {

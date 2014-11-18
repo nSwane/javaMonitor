@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry excluding="fr/ujfr/hasNext/HasNext.aj|fr/ujfr/hasNext/ParametricHasNext.aj|xIterator/program/HasNext.aj|xIterator/program/ParametricHasNext.aj|xIterator/program/ParametricHasNextEnforcement.aj|xFiles/program/OpenClose.aj|xFiles1/program/OpenClose.aj|xEnumeration/program/Aspect.aj" kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry excluding="fr/ujfr/hasNext/HasNext.aj|fr/ujfr/hasNext/ParametricHasNext.aj|xIterator/program/HasNext.aj|xIterator/program/ParametricHasNext.aj|xIterator/program/ParametricHasNextEnforcement.aj|xFiles/program/OpenClose.aj|xFiles1/program/OpenClose.aj|xFiles1/program/OpenCloseParametric.aj|xFiles2/program/OpenCloseParametric.aj|xHashCode/program/Aspect.aj|xFiles3/program/OpenCloseParametric.aj" kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.ajdt.core.ASPECTJRT_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre1.8.0_20"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

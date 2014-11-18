@@ -10,12 +10,14 @@ import xHashCode.monitor.VerificationMonitor;
 
 public aspect Aspect {
 
+	// Get runtime to retreive memory used
 	private Runtime r = Runtime.getRuntime();
+	
+	// Initialize memory used
 	private Long memoryUsed = new Long(0);
+	
+	// Enbale or not monitor calls
 	private static boolean enabled = true;
-	// Program4:
-	//	1900712 bytes when false
-	//	2079816 bytes when true
 	
 	VerificationMonitor monitor = new VerificationMonitor();
 	
@@ -29,11 +31,17 @@ public aspect Aspect {
 		return monitor.receiveEvent(e, objects);
 	}
 	
+	// Pointcuts
+	// Pointcuts for properties
 	pointcut add_collection(Collection c): call(boolean java.util.Collection.add(Object)) && target(c) && if(!Set.class.isInstance(c)) && if(enabled);
 	pointcut add_Set(Set s, Collection c): call(boolean java.util.Set.add(Object)) && target(s) && args(c) && if(enabled);
+	
+	// Pointcuts for memory used
 	pointcut memory_track(): execution(public static void main(String[]));
 	pointcut memory_end(): execution(public static void main(String[]));
 	
+	// Advices
+	// Advices for memory used
 	before(): memory_track(){
 		Long mem = r.totalMemory() - r.freeMemory();
 		if(memoryUsed == 0){
@@ -48,6 +56,7 @@ public aspect Aspect {
 		System.out.println("\nMEMORY USED: " + memoryUsed + " bytes\n");
 	}
 	
+	// Advices for properties
 	before(Collection c): add_collection(c){
 		Verdict v = dispatchEvent(Event.modify_collection, c);
 		System.out.println("Monitor "+c.hashCode()+": "+v);

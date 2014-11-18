@@ -13,8 +13,8 @@ public class Program3 {
 		Enumeration<Integer> en = v.elements();
 		Enumeration<Integer> en2 = v2.elements();
 		
-		v.add(8);
-		v2.add(9);
+		v.add(8); /* this is bad */
+		v2.add(9); /* this is bad */
 		System.out.println(en.nextElement());
 		System.out.println(en2.nextElement());
 
